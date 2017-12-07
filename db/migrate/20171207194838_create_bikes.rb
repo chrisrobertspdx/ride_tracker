@@ -3,8 +3,9 @@ class CreateBikes < ActiveRecord::Migration
     create_table :bikes do |t|
       t.string = :make
       t.string = :model
-      t.integer = :size
-      t.date = :tire_install
+      t.string = :type
+      t.integer = :frame_size
+      t.text = :maintenance_log
     end
   end
 end
