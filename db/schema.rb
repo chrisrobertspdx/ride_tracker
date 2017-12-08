@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207212146) do
+ActiveRecord::Schema.define(version: 20171208205122) do
 
   create_table "bikes", force: :cascade do |t|
     t.string  "make"
     t.string  "model"
-    t.string  "type"
+    t.string  "bike_type"
     t.integer "frame_size"
     t.text    "maintenance_log"
     t.integer "cyclist_id"

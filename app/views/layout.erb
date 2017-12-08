@@ -14,8 +14,14 @@
   <link rel="stylesheet" href="/stylesheets/main.css" />
 </head>
 <body>
+  
   <div class="wrapper">
-
+      
+      <% if flash.has?(:message) %>
+        <script>alert("<%= flash[:message] %>")</script>
+      <% end %>
+      
+      <% if logged_in? %><p align="right"><a href="/logout">Log Out</a></p><% end %>
       <%= yield %>
 
     <footer class="branding">

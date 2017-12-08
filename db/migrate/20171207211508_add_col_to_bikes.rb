@@ -3,3 +3,4 @@ class AddColToBikes < ActiveRecord::Migration
     add_column :bikes, :cyclist_id, :integer
   end
 end
+quit

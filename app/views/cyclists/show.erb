@@ -1,0 +1,23 @@
+<h1><%= @cyclist.username %></h1>
+<h3><%= @cyclist.email %></h3>
+
+<p><a href="/bikes/add">Add Bike</a> | <a href="/rides/add">Add Ride</a></p>
+
+<h4>Bikes</h4>
+<ul>
+<% @cyclist.bikes.each {|b| %>
+  <li><a href="/bikes/<%= b.id %>"><%= b.make %> <%= b.model %></a></li>
+<% } %>
+</ul>
+<br>
+
+<h4>Rides</h4>
+<ul>
+<% @cyclist.rides.each {|r| %>
+  <li><a href="/rides/<%= r.id %>"><%= r.name %></a></li>
+<% } %>
+</ul>
+<br>
+<br>
+
+<p>Total Miles: <%= @cyclist.rides.sum(:distance_miles) %></p>
