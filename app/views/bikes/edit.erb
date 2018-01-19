@@ -1,0 +1,16 @@
+<h1>Update Bike</h1>
+
+<form action="/bikes/<%= @bike.id %>" method="post">
+  <input type="hidden" name="_method" value="patch"><br>
+  <label>Make</label>
+  <input type="text" name="make" id="make" value=""><br>
+  <label>Model</label>
+  <input type="text" name="model" id="model" value=""><br>
+  <label>Size</label>
+  <input type="size" name="frame_size" id="frame_size" value=""><br>
+  <label>Type</label>
+  <input type="text" name="bike_type" id="bike_type" value=""><br>
+  <label>Maintenance Notes</label>
+  <input type="text" name="maintenance_log" id="maintenance_log" value=""><br>
+  <input type="submit" value="Add Bike">
+</form>

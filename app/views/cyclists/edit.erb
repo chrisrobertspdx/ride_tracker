@@ -1,0 +1,21 @@
+<h1>Update Ride Tracker Account</h1>
+
+<form action="/cyclists/<%= @cyclist.id %>/update" method="post">
+  Username: <%= @cyclist.username %><br>
+  <input type="hidden" name="username" id="username" value="<%= @cyclist.username %>"><br>
+  <label>First Name</label>
+  <input type="text" name="first_name" id="first_name" value="<%= @cyclist.first_name %>"><br>
+  <label>Last Name</label>
+  <input type="text" name="last_name" id="last_name" value="<%= @cyclist.last_name %>"><br>
+  <label>Email</label>
+  <input type="text" name="email" id="email" value="<%= @cyclist.email %>"><br>
+  <label>Age</label>
+  <input type="text" name="age" id="age" value="<%= @cyclist.age %>"><br>
+  <!---
+  <label>Password (</label>
+  <input type="password" name="password" id="password" value=""><br>
+  <label>Confirm Password</label>
+  <input type="password" name="confirmpassword"><br>
+  --->
+  <input type="submit" value="Update Account">
+</form>

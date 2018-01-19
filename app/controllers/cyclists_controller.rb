@@ -11,12 +11,14 @@ class CyclistsController < ApplicationController
   end
   
   get '/signup' do
+    #flash[:notice] = "Hooray, Flash is working!"
     erb :"/cyclists/create"
   end
   
   post '/signup' do
     #make sure username is not taken
     #make sure passwords match
+    
     cyclist = Cyclist.new(params)
     #binding.pry
     if cyclist.save
@@ -25,13 +27,15 @@ class CyclistsController < ApplicationController
       #binding.pry
       redirect to "/cyclists"
     else
-      #binding.pry
+      binding.pry
       #add error message
       redirect to "/signup"
     end
   end
   
   get '/login' do
+    #binding.pry
+    
     if logged_in?
       redirect to '/cyclists'
     end
@@ -45,10 +49,20 @@ class CyclistsController < ApplicationController
       redirect "/cyclists"
     else
       #need error message
+      flash[:notice] = "Username/Password combo is incorrect."
       redirect "/login"
     end
-
-
   end
+  
+  get '/logout' do
+    #binding.pry
+    if !logged_in?
+      redirect to '/login'
+    end
+    session[:cyclist_id] = nil
+    flash[:notice] = "You have been logged out."
+    erb :'/cyclists/login'
+  end  
+  
   
 end
