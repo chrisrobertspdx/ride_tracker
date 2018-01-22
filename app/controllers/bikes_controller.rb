@@ -1,14 +1,21 @@
 class BikesController < ApplicationController
 
-  get '/bikes/:bike_id' do
-     #require login
-    @bike = Bike.find(params[:bike_id])
-    erb :"/bikes/show"
+  #wanted this to be more granular
+  before do
+    if !logged_in?
+      redirect to "/"
+    end
   end
   
   get '/bikes/add' do
      #require login
     erb :"/bikes/create"
+  end
+  
+  get '/bikes/:bike_id' do
+     #require login
+    @bike = Bike.find(params[:bike_id])
+    erb :"/bikes/show"
   end
   
   post '/bikes' do
@@ -31,20 +38,21 @@ class BikesController < ApplicationController
   patch '/bikes/:bike_id' do
     #require login
     @bike = Bike.find(params[:bike_id])
-    @bike.update(params)
+    @bike.update({make: params[:make], model: params[:model], frame_size: params[:frame_size], bike_type: params[:bike_type], maintenance_log: params[:maintenance_log]})
     if @bike.save
-      redirect_to "cyclists"
+      flash[:message] = "Bike updated!"
+      redirect to "/bikes/#{@bike.id}"
     else
-      #error message
+      flash[:message] = "There was a problem updating your bike."
       render "/bikes/edit"
     end
   end
   
   delete '/bikes/:bike_id/delete' do
-   
     @bike = Bike.find(params[:bike_id])
     @bike.destroy
-    redirect_to "cyclists"
+    flash[:message] = "Bike deleted."
+    redirect to "cyclists"
   end
   
 end

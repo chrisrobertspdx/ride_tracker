@@ -16,10 +16,8 @@ class CyclistsController < ApplicationController
   end
   
   post '/signup' do
-    #make sure username is not taken
-    #make sure passwords match
-    
-    cyclist = Cyclist.new(params)
+
+    cyclist = Cyclist.new(params);
     #binding.pry
     if cyclist.save
       
@@ -27,8 +25,12 @@ class CyclistsController < ApplicationController
       #binding.pry
       redirect to "/cyclists"
     else
-      binding.pry
-      #add error message
+      #binding.pry
+      #how do i display multiple messages - can I make flash an array
+      # flash[:notices] = []
+      cyclist.errors.messages.keys.each { |e| 
+        flash[:notice] = "#{e.to_s} #{cyclist.errors.messages[e][0]}"
+      }
       redirect to "/signup"
     end
   end
@@ -64,5 +66,41 @@ class CyclistsController < ApplicationController
     erb :'/cyclists/login'
   end  
   
+  get '/cyclists/update' do
+     #require login
+    if !logged_in?
+      redirect to '/login'
+    end
+    @cyclist = current_cyclist
+    erb :"/cyclists/edit"
+  end
+  
+  patch '/cyclists/update' do
+    #require login
+    if !logged_in?
+      redirect to '/login'
+    end
+    @cyclist = current_cyclist
+    @cyclist.update(params[:cyclist])
+    if @cyclist.save
+      flash[:message] = "Account updated!"
+      redirect to "/cyclists"
+    else
+      #would be nice to give better message
+      flash[:message] = "There was a problem updating your account."
+      #should update @cyclist with params of current entry
+      erb :"/cyclists/edit"
+    end
+  end
+  
+  delete '/cyclists/delete' do
+    if !logged_in?
+      redirect to '/login'
+    end
+    @cyclist = current_cyclist
+    @cyclist.destroy
+    flash[:message] = "Account has been deleted."
+    redirect_to "/"
+  end
   
 end

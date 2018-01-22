@@ -12,7 +12,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    flash[:message] = "Welcome to Ride Tracker!"
+    flash.now[:message] = "Welcome to Ride Tracker!"
     erb :index
   end
 

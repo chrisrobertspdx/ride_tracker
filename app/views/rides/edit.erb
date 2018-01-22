@@ -1,0 +1,24 @@
+<h1>Update Ride</h1>
+
+<form action="/rides/<%= @ride.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label>Name</label>
+  <input type="text" name="name" id="name" value="<%= @ride.name %>"><br>
+  <label>Distance Miles</label>
+  <input type="text" name="distance_miles" id="distance_miles" value="<%= @ride.distance_miles %>"><br>
+  <label>Climbing Feet</label>
+  <input type="size" name="climbing_feet" id="climbing_feet" value="<%= @ride.climbing_feet %>"><br>
+  <label>Terrain</label>
+  <input type="text" name="terrain" id="terrain" value="<%= @ride.terrain %>"><br>
+  <label>Date</label>
+  <input type="text" name="ride_date" id="ride_date" value="<%= @ride.ride_date %>"><br>
+  <label>Duration</label>
+  <input type="text" name="duration_hours" id="duration_hours" value="<%= @ride.duration_hours %>"><br>
+  <label>Bike  </label><br>
+  <% current_cyclist.bikes.each { |b| %>
+  <input type="radio" name="bike_id" value="<%=b.id%>"
+    <% if @ride.bike.id == b.id %>checked<% end %>
+  > <%=b.make%> <%=b.model%><br>
+  <% } %>
+  <input type="submit" value="Update Ride">
+</form>

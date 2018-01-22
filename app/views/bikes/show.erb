@@ -4,3 +4,9 @@ Type: <%= @bike.bike_type %><br>
 Frame Size: <%= @bike.frame_size %><br>
 <br>
 Maintenance Log: <%= @bike.maintenance_log %><br>
+<br>
+<a href="/bikes/<%= @bike.id %>/update">Update Bike</a>
+<form action="/bikes/<%= @bike.id %>/delete" method="post">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" value="Delete Bike">
+</form>

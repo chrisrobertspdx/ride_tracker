@@ -3,14 +3,16 @@
 <form action="/bikes/<%= @bike.id %>" method="post">
   <input type="hidden" name="_method" value="patch"><br>
   <label>Make</label>
-  <input type="text" name="make" id="make" value=""><br>
+  <input type="text" name="make" id="make" value="<%= @bike.make %>"><br>
   <label>Model</label>
-  <input type="text" name="model" id="model" value=""><br>
+  <input type="text" name="model" id="model" value="<%= @bike.model %>"><br>
   <label>Size</label>
-  <input type="size" name="frame_size" id="frame_size" value=""><br>
+  <input type="size" name="frame_size" id="frame_size" value="<%= @bike.frame_size %>"><br>
   <label>Type</label>
-  <input type="text" name="bike_type" id="bike_type" value=""><br>
-  <label>Maintenance Notes</label>
-  <input type="text" name="maintenance_log" id="maintenance_log" value=""><br>
-  <input type="submit" value="Add Bike">
+  <input type="text" name="bike_type" id="bike_type" value="<%= @bike.bike_type %>"><br>
+  <br>
+  <label>Maintenance Notes</label><br>
+  <textarea name="maintenance_log" id="maintenance_log"><%= @bike.maintenance_log %></textarea>
+  <br><br>
+  <input type="submit" value="Update Bike">
 </form>

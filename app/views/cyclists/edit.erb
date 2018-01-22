@@ -1,21 +1,22 @@
 <h1>Update Ride Tracker Account</h1>
 
-<form action="/cyclists/<%= @cyclist.id %>/update" method="post">
+<form action="/cyclists/update" method="post">
   Username: <%= @cyclist.username %><br>
-  <input type="hidden" name="username" id="username" value="<%= @cyclist.username %>"><br>
+  <!--input type="hidden" name="username" id="username" value="<%= @cyclist.username %>"><br>-->
+  <input type="hidden" name="_method" value="patch">
   <label>First Name</label>
-  <input type="text" name="first_name" id="first_name" value="<%= @cyclist.first_name %>"><br>
+  <input type="text" name="cyclist[first_name]" id="first_name" value="<%= @cyclist.first_name %>"><br>
   <label>Last Name</label>
-  <input type="text" name="last_name" id="last_name" value="<%= @cyclist.last_name %>"><br>
+  <input type="text" name="cyclist[last_name]" id="last_name" value="<%= @cyclist.last_name %>"><br>
   <label>Email</label>
-  <input type="text" name="email" id="email" value="<%= @cyclist.email %>"><br>
+  <input type="text" name="cyclist[email]" id="email" value="<%= @cyclist.email %>"><br>
   <label>Age</label>
-  <input type="text" name="age" id="age" value="<%= @cyclist.age %>"><br>
-  <!---
-  <label>Password (</label>
-  <input type="password" name="password" id="password" value=""><br>
+  <input type="text" name="cyclist[age]" id="age" value="<%= @cyclist.age %>"><br>
+  <h3>Update Password</h3>
+  <label>Password </label>
+  <input type="password" name="cyclist[password]" id="password" value=""><br>
   <label>Confirm Password</label>
-  <input type="password" name="confirmpassword"><br>
-  --->
+  <input type="password" name="cyclist[password_confirmation]" id="password_confirmation"><br>
   <input type="submit" value="Update Account">
+  
 </form>
