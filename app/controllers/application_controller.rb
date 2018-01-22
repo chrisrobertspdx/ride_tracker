@@ -13,6 +13,9 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     flash.now[:message] = "Welcome to Ride Tracker!"
+    @cyclists = Cyclist.all
+    #@cyclists.order(:rides.sum(:distance_miles))
+    @cyclists = @cyclists.sort_by{|m| m.rides.sum(:distance_miles)}.reverse!
     erb :index
   end
 

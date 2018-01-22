@@ -1,3 +1,11 @@
 <h1>Ride Tracker</h1>
 
-<a href="/login"><button>Login</button></a> | <a href="/signup"><button>Account Signup</button></a>
+<h2>Leader Board</h2>
+<table cellpadding="5">
+<tr><td>Cyclists</td><td>Rides</td><td>Total Distance</td></tr>
+<% @cyclists.each { |c| %>
+<tr>
+<td><%= c.username %></td> <td><%= c.rides.count %></td> <td><%= c.rides.sum(:distance_miles) %></td>
+<% } %>
+</tr>
+</table>

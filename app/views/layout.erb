@@ -21,7 +21,7 @@
       
       
       <% if logged_in? %><p align="right"><a href="/cyclists/update">Account Settings</a> | <a href="/logout">Log Out</a></p><% end %>
-      <% if !logged_in? %><p align="right"><a href="/signup">Sign Up</a></p><% end %>
+      <% if !logged_in? %><p align="right"><a href="/login">Login</a> | <a href="/signup">Sign Up</a></p><% end %>
       
       <% flash.keys.each do |type| %>
         <div data-alert class="flash message" >
